@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sherina Rajasekhar | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d5c63; /* Dark Teal */
+            --accent: #eef7f6;
+            --text-main: #2d3748;
+            --text-light: #718096;
+            --bg: #fcfdfd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        header {
+            padding: 100px 0 60px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+            border-bottom: 1px solid rgba(13, 92, 99, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            color: var(--primary);
+            font-weight: 500;
+            max-width: 700px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .intro {
+            max-width: 800px;
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 30px;
+        }
+
+        .links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h2::after {
+            content: "";
+            height: 2px;
+            flex-grow: 1;
+            background: linear-gradient(to right, var(--primary), transparent);
+            opacity: 0.2;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 24px;
+            border: 1px solid rgba(13, 92, 99, 0.05);
+            box-shadow: 0 10px 30px rgba(13, 92, 99, 0.03);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(13, 92, 99, 0.08);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            flex-grow: 1;
+        }
+
+        .card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        .recommendation-card {
+            border-left: 5px solid var(--primary);
+            background: white;
+            padding: 30px;
+        }
+
+        .quote-text {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .attribution {
+            border-top: 1px solid rgba(13, 92, 99, 0.1);
+            padding-top: 15px;
+        }
+
+        .attribution strong {
+            display: block;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .attribution span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(13, 92, 99, 0.05);
+        }
+
+        .timeline-item h3 { font-size: 1.1rem; color: var(--primary); }
+        .timeline-item span { color: var(--text-light); font-weight: 500; }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            background: white;
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: 1.5px solid var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(13, 92, 99, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .timeline-item { flex-direction: column; align-items: flex-start; gap: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container hero">
+        <h1>Sherina Rajasekhar</h1>
+        <p class="tagline">Bridging business, technology, customer strategy, and operations through innovation-driven problem solving.</p>
+        <p class="intro">
+            Hybrid professional with 10+ years of experience across enterprise technology, AI SaaS solutions, customer success, operations, and strategic problem solving. Experienced in stakeholder management, solution consulting, workflow design, and cross-functional collaboration across global markets.
+        </p>
+        <div class="links">
+            <a href="https://www.linkedin.com/in/sherinarajasekhar" target="_blank">LinkedIn</a>
+            <a href="mailto:sherina19@gmail.com">Email</a>
+        </div>
+    </div>
+</header>
+
+<section id="about">
+    <div class="container">
+        <h2>About</h2>
+        <div class="card">
+            <p>
+                My journey began in enterprise technology operations and evolved into customer-facing solution consulting, AI SaaS implementations, and innovation-focused business problem solving. Over the years, I have worked across operations, enterprise systems, AI workflows, customer engagement, and strategic delivery while collaborating with cross-functional global teams.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="container">
+        <h2>Selected Work</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Internal AI Enablement Assistant</h3>
+                <p>Designed an internal AI-powered chatbot to simplify access to sales collaterals, live demos, and solution resources across industries and business functions for solution engineering and sales teams.</p>
+                <a href="https://app.yellowmessenger.com/api/chat/demo/x1597293917944" target="_blank">View Project →</a>
+            </div>
+            <div class="card">
+                <h3>AI Solution Consulting</h3>
+                <p>Designed and demonstrated enterprise AI chatbot and automation workflows aligned to customer business goals across telecom and enterprise accounts.</p>
+            </div>
+            <div class="card">
+                <h3>Customer Workshops & Discovery</h3>
+                <p>Conducted stakeholder workshops, requirement discovery sessions, and workflow discussions to translate business needs into scalable solution approaches.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="highlights">
+    <div class="container">
+        <h2>Highlights & Recognition</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Valedictorian — Grenoble Ecole de Management</h3>
+                <p>Recognized for academic excellence during the MSc in Innovation & Entrepreneurship program.</p>
+                <a href="https://www.linkedin.com/posts/sherinarajasekhar_gem-innovation-entrepreneurship-activity-7436726787503616000-vH4A" target="_blank">View Highlight →</a>
+            </div>
+            <div class="card">
+                <h3>EDGE Workshop</h3>
+                <p>Participated in collaborative design-thinking and innovation workshops focused on customer-centric problem solving and rapid ideation.</p>
+                <a href="https://www.linkedin.com/posts/sherinarajasekhar_innovation-sustainability-openinnovation-activity-7341018740790042624-xBop" target="_blank">View Highlight →</a>
+            </div>
+            <div class="card">
+                <h3>AI & Product Thinking</h3>
+                <p>Shared perspectives and project work around conversational AI, workflow automation, customer engagement, and product thinking.</p>
+                <a href="https://www.linkedin.com/posts/sherinarajasekhar_conversationalai-innovation-productthinking-activity-7336342276354228224-CvOz" target="_blank">View Highlight →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="recommendations">
+    <div class="container">
+        <h2>Recommendations</h2>
+        <div class="grid">
+            <!-- Aditya Kumar -->
+            <div class="card recommendation-card">
+                <p class="quote-text">"Sherina is the most calm and resilient personal when it comes to working. Sherina and I have worked on various use cases which are critically complex and she has shown extreme dedication and wholesome approach in completing them. she's a true asset to any team wherever she'll be."</p>
+                <div class="attribution">
+                    <strong>Aditya Kumar</strong>
+                    <span>SWE @AIONOS | Backend engineer</span>
+                </div>
+            </div>
+
+            <!-- Vishnupriyan Govindarajan -->
+            <div class="card recommendation-card">
+                <p class="quote-text">"I had the opportunity to work with Sherina in yellow.ai. She is one of the finest solutions engineers / consultants I have worked with. She has the ability to develop a deep understanding of customer problems, industry trends and product capabilities... Sherina is a strong candidate for solutioning and would be happy to work with such a sound professional any day."</p>
+                <div class="attribution">
+                    <strong>Vishnupriyan Govindarajan</strong>
+                    <span>Product Manager | GenAI and AI Agent Observability | B2B SaaS</span>
+                </div>
+            </div>
+
+            <!-- Jagan Yalla -->
+            <div class="card recommendation-card">
+                <p class="quote-text">"I had seen her career from a fresher to a good team lead... She used to give lot suggestions to us especially dealing with deadlocks and debugging many other issues... She was so patience in answering my team questions in long calls. As time moves, she become so strong in DB2... Leadership is not only gives authority but also makes you reveal your character... Her knowledge and wisdom not only make her good team lead but her kind heart won the teammates."</p>
+                <div class="attribution">
+                    <strong>Jagan Yalla</strong>
+                    <span>GCP Solution Architect</span>
+                </div>
+            </div>
+
+            <!-- Balaji Panchatsaram -->
+            <div class="card recommendation-card">
+                <p class="quote-text">"Sherina is one among the best Database administrator i had worked with, her calmness and critical problem solving ability had always helped the Team and benefitted the clients in fixing the high critical issues. She will be a valuable asset to any Team she belongs too."</p>
+                <div class="attribution">
+                    <strong>Balaji Panchatsaram</strong>
+                    <span>Lead Software Engineer - DBA (Postgres | NoSql | K8's | GCP)</span>
+                </div>
+            </div>
+
+            <!-- Arjun Ramesh -->
+            <div class="card recommendation-card">
+                <p class="quote-text">"Sherina is a wonderful team player who keeps raising the bar on every technical aspect and has an exceptional knowledge on RDBMS skills. I've worked with her for almost 6 years and she has been an invaluable support to the entire team. Very adaptive to the changing environment and always has a positive attitude towards work."</p>
+                <div class="attribution">
+                    <strong>Arjun Ramesh</strong>
+                    <span>2xAWS SAA Certified | Database Administrator at Leidos</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="experience">
+    <div class="container">
+        <h2>Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item"><h3>CSM & Operations</h3><span>Fleet.co | Barcelona</span></div>
+            <div class="timeline-item"><h3>Solution Consultant - Presales Manager</h3><span>Jio Haptik | Bangalore</span></div>
+            <div class="timeline-item"><h3>Enterprise Solutions Engineer</h3><span>Yellow.ai | Bangalore</span></div>
+            <div class="timeline-item"><h3>Service Delivery - Tech Lead</h3><span>Cognizant | Chennai</span></div>
+        </div>
+    </div>
+</section>
+
+<section id="capabilities">
+    <div class="container">
+        <h2>Capabilities</h2>
+        <div class="skills">
+            <div class="skill">Solution Consultant</div><div class="skill">Cross-Functional</div>
+            <div class="skill">Customer Success</div><div class="skill">AI & SaaS Solutions</div>
+            <div class="skill">Stakeholder Management</div><div class="skill">Business Operations</div>
+            <div class="skill">Requirements Discovery</div><div class="skill">Workflow Design</div>
+            <div class="skill">Design Thinking</div><div class="skill">Operation Optimisation</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Sherina Rajasekhar · Barcelona, Spain</p>
+</footer>
+
+</body>
+</html>
