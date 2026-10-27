@@ -240,6 +240,11 @@
 (function () {
   var c = document.getElementById('sky'), x = c.getContext('2d'), W, H, neb, stars = [], raf;
   var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* DIALS: change these two numbers to tune the background.
+     NEBULA = colour cloud strength (0 = none, .03 = faint, .085 = what you saw)
+     STARS  = number of stars (0 = none, 90 = few, 220 = what you saw)
+     Set both to 0 for a plain background. */
+  var NEBULA = .03, STARS = 90;
   function build() {
     var d = Math.min(devicePixelRatio || 1, 2);
     W = c.width = innerWidth * d; H = c.height = innerHeight * d;
@@ -249,12 +254,12 @@
       for (var i = 0; i < 5; i++) {
         var px = (k[0] + (Math.random() - .5) * .25) * W, py = (k[1] + (Math.random() - .5) * .25) * H, r = (.14 + Math.random() * .16) * Math.max(W, H);
         var g = n.createRadialGradient(px, py, 0, px, py, r);
-        g.addColorStop(0, 'rgba(' + k[2] + ',.085)'); g.addColorStop(1, 'rgba(' + k[2] + ',0)');
+        g.addColorStop(0, 'rgba(' + k[2] + ',' + NEBULA + ')'); g.addColorStop(1, 'rgba(' + k[2] + ',0)');
         n.fillStyle = g; n.fillRect(0, 0, W, H);
       }
     });
     stars = [];
-    for (var j = 0; j < 220; j++) stars.push({ x: Math.random() * W, y: Math.random() * H, r: (Math.random() * 1.2 + .3) * d, t: Math.random() * 6.3, s: .5 + Math.random() * 1.5 });
+    for (var j = 0; j < STARS; j++) stars.push({ x: Math.random() * W, y: Math.random() * H, r: (Math.random() * 1.2 + .3) * d, t: Math.random() * 6.3, s: .5 + Math.random() * 1.5 });
   }
   function draw(t) {
     x.clearRect(0, 0, W, H); x.drawImage(neb, 0, 0); x.fillStyle = '#fff';
