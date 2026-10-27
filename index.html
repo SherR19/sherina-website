@@ -1,390 +1,273 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sherina Rajasekhar | Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #0d5c63; /* Dark Teal */
-            --accent: #eef7f6;
-            --text-main: #2d3748;
-            --text-light: #718096;
-            --bg: #fcfdfd;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sherina Rajasekhar | Portfolio</title>
+<meta name="description" content="Solution consultant and customer success leader bridging business, technology and operations. Pet projects, experience and recommendations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #07080f; --panel: rgba(16,18,36,.62); --line: rgba(160,172,255,.2);
+    --text: #e9ecf8; --muted: #a2aacb;
+    --blue: #2f5fa8; --green: #2f9a63; --teal: #1a9bc0; --purple: #8a3a96;
+    --orange: #c9803a; --sage: #6f9a78; --steel: #6aa0be; --rust: #b5593a;
+    --link: #9fb4ff;
+    --display: 'Michroma', 'Poppins', sans-serif; --body: 'Poppins', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 1rem; }
+  body {
+    margin: 0; background: var(--ink); color: var(--text);
+    font: 400 1rem/1.65 var(--body);
+    padding: env(safe-area-inset-top, 0) 0 env(safe-area-inset-bottom, 0);
+  }
+  #sky { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; }
+  a { color: var(--link); }
+  a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.25rem; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  /* ---------- Hero ---------- */
+  .hero { text-align: center; padding: 4rem 0 2rem; }
+  .hero h1 { font: 400 clamp(1.7rem, 5.5vw, 3rem)/1.15 var(--display); margin: 0 0 1rem; letter-spacing: .03em; }
+  .hero .line { font-size: clamp(1.05rem, 2.6vw, 1.35rem); max-width: 34ch; margin: 0 auto .75rem; font-weight: 500; }
+  .hero .sub { color: var(--muted); max-width: 58ch; margin: 0 auto 2rem; font-size: .95rem; }
+  .links { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .btn { padding: .6rem 1.2rem; border-radius: 999px; border: 1px solid var(--line); text-decoration: none; font-weight: 600; font-size: .9rem; color: var(--text); background: var(--panel); }
+  .btn:hover { border-color: var(--link); }
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
+  /* ---------- Hive nav ---------- */
+  .hive { --w: clamp(92px, 27vw, 140px); --h: calc(var(--w) * 1.1547); display: flex; flex-direction: column; align-items: center; padding-bottom: 3rem; }
+  .row { display: flex; gap: 10px; margin-top: calc(var(--h) * -.25 + 9px); }
+  .row:first-child { margin-top: 0; }
+  .hex {
+    width: var(--w); height: var(--h); display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; text-decoration: none; color: #fff; padding: 0 .6rem;
+    position: relative; isolation: isolate; text-shadow: 0 1px 6px rgba(0,0,0,.45);
+    filter: drop-shadow(0 0 7px color-mix(in srgb, var(--c) 70%, transparent)) drop-shadow(0 0 20px color-mix(in srgb, var(--c) 40%, transparent));
+    font: 400 clamp(.55rem, 1.9vw, .72rem)/1.25 var(--display);
+    transition: transform .25s ease, filter .25s ease;
+    animation: settle .9s cubic-bezier(.25,.8,.25,1) backwards; animation-delay: calc(var(--i) * 110ms);
+  }
+  /* The coloured, rounded shape lives on ::before so the glow (a filter on the link) is not clipped */
+  .hex::before { content: ''; position: absolute; inset: 0; z-index: -1; clip-path: url(#round-hex);
+    background: var(--c); background: radial-gradient(circle at 32% 22%, color-mix(in srgb, var(--c) 62%, #fff) 0%, var(--c) 48%, color-mix(in srgb, var(--c) 72%, #000) 100%); }
+  .hex small { display: block; font: 400 clamp(.55rem, 1.7vw, .68rem)/1.3 var(--body); opacity: .85; margin-top: .25rem; }
+  .hex:hover, .hex:focus-visible { transform: scale(1.05); filter: brightness(1.12) drop-shadow(0 0 10px var(--c)) drop-shadow(0 0 32px var(--c)); }
+  .hex.mid { --c: var(--teal); }
+  .hex.mid::before { background: linear-gradient(90deg, color-mix(in srgb, var(--green) 85%, #fff) 0%, var(--green) 50%, var(--teal) 50%, color-mix(in srgb, var(--teal) 85%, #fff) 100%); }
+  @keyframes settle { from { transform: translateY(10px) scale(.94); opacity: 0; } }
 
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: auto;
-        }
+  /* ---------- Sections ---------- */
+  section { padding: 2.75rem 0; border-top: 1px solid var(--line); }
+  h2 { font: 400 clamp(1.15rem, 3vw, 1.5rem)/1.3 var(--display); margin: 0 0 1.25rem; padding-left: .9rem; border-left: 5px solid var(--c, var(--link)); letter-spacing: .03em; }
+  h3 { margin: 0 0 .35rem; font-size: 1.05rem; font-weight: 600; }
+  p { margin: 0 0 1rem; max-width: 68ch; }
+  .muted { color: var(--muted); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.1rem; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--c, var(--link)); border-radius: 10px; padding: 1.15rem; backdrop-filter: blur(8px); display: flex; flex-direction: column; }
+  .card p { font-size: .93rem; flex-grow: 1; }
+  .card a.go { font-weight: 600; text-decoration: none; }
+  .card a.go:hover { text-decoration: underline; }
+  .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 .9rem; padding: 0; list-style: none; }
+  .tags li { font-size: .72rem; font-weight: 600; padding: .15rem .6rem; border-radius: 999px; background: rgba(160,172,255,.14); color: #cfd6ff; }
+  .role { display: grid; grid-template-columns: 1fr; gap: .1rem; padding: .9rem 0; border-bottom: 1px solid var(--line); }
+  .role:last-child { border-bottom: 0; }
+  .role b { font-weight: 600; }
+  blockquote { margin: 0; font-size: .95rem; }
+  blockquote cite { display: block; margin-top: .75rem; font-style: normal; font-size: .82rem; color: var(--muted); }
+  blockquote cite b { color: var(--text); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: .6rem; padding: 0; list-style: none; margin: 0; }
+  .chips li { padding: .4rem .9rem; border-radius: 999px; border: 1px solid var(--c); background: rgba(255,255,255,.04); font-size: .88rem; }
+  footer { padding: 2.5rem 0 3.5rem; text-align: center; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
 
-        header {
-            padding: 100px 0 60px;
-            background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
-            border-bottom: 1px solid rgba(13, 92, 99, 0.1);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -1px;
-            margin-bottom: 15px;
-        }
-
-        .tagline {
-            font-size: 1.25rem;
-            color: var(--primary);
-            font-weight: 500;
-            max-width: 700px;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
-        .intro {
-            max-width: 800px;
-            font-size: 1rem;
-            color: var(--text-main);
-            margin-bottom: 30px;
-        }
-
-        .links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .links a {
-            text-decoration: none;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 10px 24px;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .links a:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        section {
-            padding: 60px 0;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 40px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        h2::after {
-            content: "";
-            height: 2px;
-            flex-grow: 1;
-            background: linear-gradient(to right, var(--primary), transparent);
-            opacity: 0.2;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: white;
-            padding: 35px;
-            border-radius: 24px;
-            border: 1px solid rgba(13, 92, 99, 0.05);
-            box-shadow: 0 10px 30px rgba(13, 92, 99, 0.03);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(13, 92, 99, 0.08);
-            border-color: var(--primary);
-        }
-
-        .card h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .card p {
-            font-size: 0.95rem;
-            color: var(--text-main);
-            flex-grow: 1;
-        }
-
-        .card a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-top: 15px;
-        }
-
-        .card a:hover {
-            text-decoration: underline;
-        }
-
-        .recommendation-card {
-            border-left: 5px solid var(--primary);
-            background: white;
-            padding: 30px;
-        }
-
-        .quote-text {
-            font-style: italic;
-            font-size: 0.9rem;
-            color: var(--text-main);
-            margin-bottom: 25px;
-            line-height: 1.7;
-        }
-
-        .attribution {
-            border-top: 1px solid rgba(13, 92, 99, 0.1);
-            padding-top: 15px;
-        }
-
-        .attribution strong {
-            display: block;
-            color: var(--primary);
-            font-size: 0.95rem;
-        }
-
-        .attribution span {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-top: 4px;
-        }
-
-        .timeline-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 25px;
-            background: white;
-            border-radius: 20px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(13, 92, 99, 0.05);
-        }
-
-        .timeline-item h3 { font-size: 1.1rem; color: var(--primary); }
-        .timeline-item span { color: var(--text-light); font-weight: 500; }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill {
-            background: white;
-            color: var(--primary);
-            padding: 10px 20px;
-            border-radius: 12px;
-            border: 1.5px solid var(--primary);
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
-        footer {
-            padding: 60px 0;
-            text-align: center;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(13, 92, 99, 0.1);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .timeline-item { flex-direction: column; align-items: flex-start; gap: 5px; }
-        }
-    </style>
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hex { animation: none; transition: none; } }
+</style>
 </head>
 <body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><clipPath id="round-hex" clipPathUnits="objectBoundingBox"><path d="M0.4000,0.0500 Q0.5,0 0.6000,0.0500 L0.9000,0.2000 Q1,0.25 1.0000,0.3500 L1.0000,0.6500 Q1,0.75 0.9000,0.8000 L0.6000,0.9500 Q0.5,1 0.4000,0.9500 L0.1000,0.8000 Q0,0.75 0.0000,0.6500 L0.0000,0.3500 Q0,0.25 0.1000,0.2000 Z"/></clipPath></defs></svg>
 
-<header>
-    <div class="container hero">
-        <h1>Sherina Rajasekhar</h1>
-        <p class="tagline">Bridging business, technology, customer strategy, and operations through innovation-driven problem solving.</p>
-        <p class="intro">
-            Hybrid professional with 10+ years of experience across enterprise technology, AI SaaS solutions, customer success, operations, and strategic problem solving. Experienced in stakeholder management, solution consulting, workflow design, and cross-functional collaboration across global markets.
-        </p>
-        <div class="links">
-            <a href="https://www.linkedin.com/in/sherinarajasekhar" target="_blank">LinkedIn</a>
-            <a href="mailto:sherina19@gmail.com">Email</a>
-        </div>
+<main class="wrap">
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <h1>Sherina Rajasekhar</h1>
+    <!-- Edit this line to something only you would say -->
+    <p class="line">I work out what a business actually needs, then shape the technology to fit.</p>
+    <p class="sub">10+ years across enterprise technology, AI SaaS, customer success and operations. Based in Barcelona, working with teams around the world.</p>
+    <div class="links">
+      <a class="btn" href="https://www.linkedin.com/in/sherinarajasekhar" target="_blank" rel="noopener">LinkedIn</a>
+      <!-- TODO: put your real email address here -->
+      <a class="btn" href="mailto:YOUR-EMAIL@example.com">Email me</a>
     </div>
-</header>
 
-<section id="about">
-    <div class="container">
-        <h2>About</h2>
-        <div class="card">
-            <p>
-                My journey began in enterprise technology operations and evolved into customer-facing solution consulting, AI SaaS implementations, and innovation-focused business problem solving. Over the years, I have worked across operations, enterprise systems, AI workflows, customer engagement, and strategic delivery while collaborating with cross-functional global teams.
-            </p>
-        </div>
+    <nav class="hive" aria-label="Sections">
+      <div class="row">
+        <a class="hex" style="--c:var(--blue);--i:0" href="#about">About</a>
+        <a class="hex" style="--c:var(--rust);--i:1" href="#experience">Experience</a>
+      </div>
+      <div class="row">
+        <a class="hex" style="--c:var(--teal);--i:2" href="#work">Selected work</a>
+        <a class="hex mid" style="--i:3" href="#projects">Pet projects<small>experiments</small></a>
+        <a class="hex" style="--c:var(--purple);--i:4" href="#skills">Skills</a>
+      </div>
+      <div class="row">
+        <a class="hex" style="--c:var(--orange);--i:5" href="#kind-words">Kind words</a>
+        <a class="hex" style="--c:var(--steel);--i:6" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" style="--c:var(--blue)">
+    <h2>About</h2>
+    <p>I started in enterprise technology operations, then moved into customer-facing solution consulting, AI SaaS implementations and business problem solving. Along the way I’ve worked across operations, enterprise systems, AI workflows and customer engagement, always with global, cross-functional teams.</p>
+    <p class="muted">Valedictorian of the MSc in Innovation &amp; Entrepreneurship at Grenoble Ecole de Management.</p>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience" style="--c:var(--rust)">
+    <h2>Experience</h2>
+    <!-- TODO: add dates and one result per role -->
+    <div class="role"><b>CSM &amp; Operations</b><span class="muted">Fleet.co, Barcelona</span></div>
+    <div class="role"><b>Solution Consultant, Presales Manager</b><span class="muted">Jio Haptik, Bangalore</span></div>
+    <div class="role"><b>Enterprise Solutions Engineer</b><span class="muted">Yellow.ai, Bangalore</span></div>
+    <div class="role"><b>Service Delivery, Tech Lead</b><span class="muted">Cognizant, Chennai</span></div>
+  </section>
+
+  <!-- ===== SELECTED WORK ===== -->
+  <section id="work" style="--c:var(--teal)">
+    <h2>Selected work</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>Internal AI enablement assistant</h3>
+        <p>An AI chatbot that gives solution engineering and sales teams quick access to collaterals, live demos and solution resources across industries.</p>
+        <a class="go" href="https://app.yellowmessenger.com/api/chat/demo/x1597293917944" target="_blank" rel="noopener">Try the demo</a>
+      </article>
+      <article class="card">
+        <h3>AI solution consulting</h3>
+        <p>Designed and demonstrated enterprise chatbot and automation workflows tied to customer business goals, across telecom and enterprise accounts.</p>
+      </article>
+      <article class="card">
+        <h3>Customer workshops and discovery</h3>
+        <p>Ran stakeholder workshops and discovery sessions that turned business needs into solution approaches that could scale.</p>
+      </article>
     </div>
-</section>
+  </section>
 
-<section id="projects">
-    <div class="container">
-        <h2>Selected Work</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Internal AI Enablement Assistant</h3>
-                <p>Designed an internal AI-powered chatbot to simplify access to sales collaterals, live demos, and solution resources across industries and business functions for solution engineering and sales teams.</p>
-                <a href="https://app.yellowmessenger.com/api/chat/demo/x1597293917944" target="_blank">View Project →</a>
-            </div>
-            <div class="card">
-                <h3>AI Solution Consulting</h3>
-                <p>Designed and demonstrated enterprise AI chatbot and automation workflows aligned to customer business goals across telecom and enterprise accounts.</p>
-            </div>
-            <div class="card">
-                <h3>Customer Workshops & Discovery</h3>
-                <p>Conducted stakeholder workshops, requirement discovery sessions, and workflow discussions to translate business needs into scalable solution approaches.</p>
-            </div>
-        </div>
+  <!-- ===== PET PROJECTS ===== -->
+  <section id="projects" style="--c:var(--green)">
+    <h2>Pet projects</h2>
+    <p class="muted">Small experiments in how people work, learn and decide. Each one is live, so please try them.</p>
+    <div class="grid">
+      <article class="card" style="--c:var(--rust)">
+        <h3>Work With Me stamp</h3>
+        <p>My working style as a one-glance badge: how to reach me, what drives me, how to brief me, and what I do under pressure. Built so anyone can make their own.</p>
+        <ul class="tags"><li>Working style</li><li>Visual identity</li></ul>
+        <a class="go" href="https://sherr19.github.io/Profstamp.github.io/" target="_blank" rel="noopener">Open the stamp</a>
+      </article>
+      <article class="card" style="--c:var(--purple)">
+        <h3>V3-SHARE innovation assessment</h3>
+        <p>Scores an innovation from 1 to 4 on 20 dimensions: market validity, harm and safety, alternatives, responsible scaling and ethical impact. Results appear as a dashboard, table, hive and sunburst.</p>
+        <ul class="tags"><li>Innovation evaluation</li><li>Responsible innovation</li><li>D3.js</li></ul>
+        <!-- TODO: publish V3-Share.html as its own GitHub Pages repo and confirm this URL -->
+        <a class="go" href="https://sherr19.github.io/V3-Share/" target="_blank" rel="noopener">Run an assessment</a>
+      </article>
+      <article class="card" style="--c:var(--teal)">
+        <h3>Capabilities Hive</h3>
+        <p>My 24 skills as an interactive honeycomb. Flip a tile to read it, or play the drag-and-match game.</p>
+        <ul class="tags"><li>Interactive</li><li>Game</li></ul>
+        <a class="go" href="https://sherr19.github.io/Website/" target="_blank" rel="noopener">Play the Hive</a>
+      </article>
+      <article class="card" style="--c:var(--orange)">
+        <h3>Think</h3>
+        <p>Daily voice discussions: pick a topic, set a timer and talk it through with an AI partner. Talking with a person is coming next.</p>
+        <ul class="tags"><li>Voice</li><li>Conversational AI</li></ul>
+        <a class="go" href="https://sherr19.github.io/think-web/" target="_blank" rel="noopener">Think out loud</a>
+      </article>
     </div>
-</section>
+  </section>
 
-<section id="highlights">
-    <div class="container">
-        <h2>Highlights & Recognition</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Valedictorian — Grenoble Ecole de Management</h3>
-                <p>Recognized for academic excellence during the MSc in Innovation & Entrepreneurship program.</p>
-                <a href="https://www.linkedin.com/posts/sherinarajasekhar_gem-innovation-entrepreneurship-activity-7436726787503616000-vH4A" target="_blank">View Highlight →</a>
-            </div>
-            <div class="card">
-                <h3>EDGE Workshop</h3>
-                <p>Participated in collaborative design-thinking and innovation workshops focused on customer-centric problem solving and rapid ideation.</p>
-                <a href="https://www.linkedin.com/posts/sherinarajasekhar_innovation-sustainability-openinnovation-activity-7341018740790042624-xBop" target="_blank">View Highlight →</a>
-            </div>
-            <div class="card">
-                <h3>AI & Product Thinking</h3>
-                <p>Shared perspectives and project work around conversational AI, workflow automation, customer engagement, and product thinking.</p>
-                <a href="https://www.linkedin.com/posts/sherinarajasekhar_conversationalai-innovation-productthinking-activity-7336342276354228224-CvOz" target="_blank">View Highlight →</a>
-            </div>
-        </div>
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" style="--c:var(--purple)">
+    <h2>Skills</h2>
+    <ul class="chips">
+      <li style="--c:var(--blue)">Solution consulting</li>
+      <li style="--c:var(--teal)">AI and SaaS solutions</li>
+      <li style="--c:var(--green)">Customer success</li>
+      <li style="--c:var(--orange)">Stakeholder management</li>
+      <li style="--c:var(--rust)">Business operations</li>
+      <li style="--c:var(--purple)">Requirements discovery</li>
+      <li style="--c:var(--sage)">Workflow design</li>
+      <li style="--c:var(--steel)">Design thinking</li>
+      <li style="--c:var(--blue)">Operations optimisation</li>
+      <li style="--c:var(--teal)">Cross-functional collaboration</li>
+    </ul>
+    <p style="margin-top:1rem"><a href="https://sherr19.github.io/Website/" target="_blank" rel="noopener">See all 24 in the Capabilities Hive</a></p>
+  </section>
+
+  <!-- ===== KIND WORDS ===== -->
+  <section id="kind-words" style="--c:var(--orange)">
+    <h2>Kind words</h2>
+    <div class="grid">
+      <blockquote class="card"><p>“One of the finest solutions engineers / consultants I have worked with.”</p><cite><b>Vishnupriyan Govindarajan</b><br>Product Manager, GenAI and AI Agent Observability</cite></blockquote>
+      <blockquote class="card"><p>“She’s a true asset to any team wherever she’ll be.”</p><cite><b>Aditya Kumar</b><br>SWE, backend engineer</cite></blockquote>
+      <blockquote class="card"><p>“Her calmness and critical problem solving ability had always helped the Team.”</p><cite><b>Balaji Panchatsaram</b><br>Lead Software Engineer, DBA</cite></blockquote>
+      <blockquote class="card"><p>“Very adaptive to the changing environment and always has a positive attitude towards work.”</p><cite><b>Arjun Ramesh</b><br>Database Administrator</cite></blockquote>
+      <blockquote class="card"><p>“Her knowledge and wisdom not only make her good team lead but her kind heart won the teammates.”</p><cite><b>Jagan Yalla</b><br>GCP Solution Architect</cite></blockquote>
     </div>
-</section>
+  </section>
 
-<section id="recommendations">
-    <div class="container">
-        <h2>Recommendations</h2>
-        <div class="grid">
-            <!-- Aditya Kumar -->
-            <div class="card recommendation-card">
-                <p class="quote-text">"Sherina is the most calm and resilient personal when it comes to working. Sherina and I have worked on various use cases which are critically complex and she has shown extreme dedication and wholesome approach in completing them. she's a true asset to any team wherever she'll be."</p>
-                <div class="attribution">
-                    <strong>Aditya Kumar</strong>
-                    <span>SWE @AIONOS | Backend engineer</span>
-                </div>
-            </div>
-
-            <!-- Vishnupriyan Govindarajan -->
-            <div class="card recommendation-card">
-                <p class="quote-text">"I had the opportunity to work with Sherina in yellow.ai. She is one of the finest solutions engineers / consultants I have worked with. She has the ability to develop a deep understanding of customer problems, industry trends and product capabilities... Sherina is a strong candidate for solutioning and would be happy to work with such a sound professional any day."</p>
-                <div class="attribution">
-                    <strong>Vishnupriyan Govindarajan</strong>
-                    <span>Product Manager | GenAI and AI Agent Observability | B2B SaaS</span>
-                </div>
-            </div>
-
-            <!-- Jagan Yalla -->
-            <div class="card recommendation-card">
-                <p class="quote-text">"I had seen her career from a fresher to a good team lead... She used to give lot suggestions to us especially dealing with deadlocks and debugging many other issues... She was so patience in answering my team questions in long calls. As time moves, she become so strong in DB2... Leadership is not only gives authority but also makes you reveal your character... Her knowledge and wisdom not only make her good team lead but her kind heart won the teammates."</p>
-                <div class="attribution">
-                    <strong>Jagan Yalla</strong>
-                    <span>GCP Solution Architect</span>
-                </div>
-            </div>
-
-            <!-- Balaji Panchatsaram -->
-            <div class="card recommendation-card">
-                <p class="quote-text">"Sherina is one among the best Database administrator i had worked with, her calmness and critical problem solving ability had always helped the Team and benefitted the clients in fixing the high critical issues. She will be a valuable asset to any Team she belongs too."</p>
-                <div class="attribution">
-                    <strong>Balaji Panchatsaram</strong>
-                    <span>Lead Software Engineer - DBA (Postgres | NoSql | K8's | GCP)</span>
-                </div>
-            </div>
-
-            <!-- Arjun Ramesh -->
-            <div class="card recommendation-card">
-                <p class="quote-text">"Sherina is a wonderful team player who keeps raising the bar on every technical aspect and has an exceptional knowledge on RDBMS skills. I've worked with her for almost 6 years and she has been an invaluable support to the entire team. Very adaptive to the changing environment and always has a positive attitude towards work."</p>
-                <div class="attribution">
-                    <strong>Arjun Ramesh</strong>
-                    <span>2xAWS SAA Certified | Database Administrator at Leidos</span>
-                </div>
-            </div>
-        </div>
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" style="--c:var(--steel)">
+    <h2>Get in touch</h2>
+    <p>If something here is useful to you, or you’d like to build your own stamp, I’d like to hear about it.</p>
+    <div class="links" style="justify-content:flex-start;margin:0">
+      <a class="btn" href="https://www.linkedin.com/in/sherinarajasekhar" target="_blank" rel="noopener">LinkedIn</a>
+      <!-- TODO: real email -->
+      <a class="btn" href="mailto:YOUR-EMAIL@example.com">Email me</a>
     </div>
-</section>
+  </section>
+</main>
 
-<section id="experience">
-    <div class="container">
-        <h2>Experience</h2>
-        <div class="timeline">
-            <div class="timeline-item"><h3>CSM & Operations</h3><span>Fleet.co | Barcelona</span></div>
-            <div class="timeline-item"><h3>Solution Consultant - Presales Manager</h3><span>Jio Haptik | Bangalore</span></div>
-            <div class="timeline-item"><h3>Enterprise Solutions Engineer</h3><span>Yellow.ai | Bangalore</span></div>
-            <div class="timeline-item"><h3>Service Delivery - Tech Lead</h3><span>Cognizant | Chennai</span></div>
-        </div>
-    </div>
-</section>
+<footer>© 2026 Sherina Rajasekhar · Barcelona, Spain</footer>
 
-<section id="capabilities">
-    <div class="container">
-        <h2>Capabilities</h2>
-        <div class="skills">
-            <div class="skill">Solution Consultant</div><div class="skill">Cross-Functional</div>
-            <div class="skill">Customer Success</div><div class="skill">AI & SaaS Solutions</div>
-            <div class="skill">Stakeholder Management</div><div class="skill">Business Operations</div>
-            <div class="skill">Requirements Discovery</div><div class="skill">Workflow Design</div>
-            <div class="skill">Design Thinking</div><div class="skill">Operation Optimisation</div>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <p>© 2026 Sherina Rajasekhar · Barcelona, Spain</p>
-</footer>
-
+<script>
+/* Quiet starfield + nebula. Stays still if the visitor prefers reduced motion. */
+(function () {
+  var c = document.getElementById('sky'), x = c.getContext('2d'), W, H, neb, stars = [], raf;
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function build() {
+    var d = Math.min(devicePixelRatio || 1, 2);
+    W = c.width = innerWidth * d; H = c.height = innerHeight * d;
+    neb = document.createElement('canvas'); neb.width = W; neb.height = H;
+    var n = neb.getContext('2d');
+    [[.15,.2,'255,200,90'],[.3,.4,'60,200,190'],[.8,.7,'240,110,170'],[.6,.2,'120,100,255']].forEach(function (k) {
+      for (var i = 0; i < 5; i++) {
+        var px = (k[0] + (Math.random() - .5) * .25) * W, py = (k[1] + (Math.random() - .5) * .25) * H, r = (.14 + Math.random() * .16) * Math.max(W, H);
+        var g = n.createRadialGradient(px, py, 0, px, py, r);
+        g.addColorStop(0, 'rgba(' + k[2] + ',.085)'); g.addColorStop(1, 'rgba(' + k[2] + ',0)');
+        n.fillStyle = g; n.fillRect(0, 0, W, H);
+      }
+    });
+    stars = [];
+    for (var j = 0; j < 220; j++) stars.push({ x: Math.random() * W, y: Math.random() * H, r: (Math.random() * 1.2 + .3) * d, t: Math.random() * 6.3, s: .5 + Math.random() * 1.5 });
+  }
+  function draw(t) {
+    x.clearRect(0, 0, W, H); x.drawImage(neb, 0, 0); x.fillStyle = '#fff';
+    stars.forEach(function (s) {
+      x.globalAlpha = still ? .7 : .25 + .75 * (.5 + .5 * Math.sin(t / 1000 * s.s + s.t));
+      x.beginPath(); x.arc(s.x, s.y, s.r, 0, 6.3); x.fill();
+    });
+    x.globalAlpha = 1;
+    if (!still) raf = requestAnimationFrame(draw);
+  }
+  function go() { cancelAnimationFrame(raf); build(); raf = requestAnimationFrame(draw); }
+  addEventListener('resize', go); go();
+})();
+</script>
 </body>
 </html>
